@@ -185,7 +185,7 @@ module "warmer_function" {
 module "cloudfront_logs" {
   source         = "./modules/cloudfront-logs"
   default_tags   = var.default_tags
-  aws_account_id = try(var.aws_account_id, data.aws_caller_identity.current.account_id)
+  aws_account_id = var.aws_account_id
 
   log_group_name  = "${var.prefix}-cloudfront-logs"
   log_bucket_name = "${var.prefix}-cloudfront-logs"
