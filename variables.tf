@@ -2,6 +2,11 @@
 /**
  * Common Variables
  **/
+
+variable "custom_origin_request_policy" {
+  description = "I could not retreive it from data source due to provider issue..."
+}
+
 variable "prefix" {
   type        = string
   description = "Prefix for created resource IDs"

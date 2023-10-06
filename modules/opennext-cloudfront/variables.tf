@@ -115,6 +115,10 @@ variable "waf_logging_configuration" {
   default = null
 }
 
+variable "custom_origin_request_policy" {
+  description = "I could not retreive it from data source due to provider issue..."
+}
+
 variable "origin_request_policy" {
   type = object({
     cookies_config = object({

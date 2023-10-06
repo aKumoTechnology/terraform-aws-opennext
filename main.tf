@@ -209,6 +209,8 @@ module "cloudfront" {
   prefix       = "${var.prefix}-cloudfront"
   default_tags = var.default_tags
 
+  custom_origin_request_policy = var.custom_origin_request_policy
+
   logging_bucket_domain_name    = module.cloudfront_logs.logs_s3_bucket.bucket_regional_domain_name
   assets_origin_access_identity = module.assets.cloudfront_origin_access_identity.cloudfront_access_identity_path
 

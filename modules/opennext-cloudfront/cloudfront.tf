@@ -18,11 +18,11 @@ function handler(event) {
 EOF
 }
 
-data "aws_cloudfront_origin_request_policy" "origin_request_policy" {
-  provider = aws.global
-  count    = var.origin_request_policy == null ? 1 : 0
-  name     = "Managed-AllViewerExceptHostHeader"
-}
+# data "aws_cloudfront_origin_request_policy" "origin_request_policy" {
+#   provider = aws.global
+#   count    = var.origin_request_policy == null ? 1 : 0
+#   name     = "Managed-AllViewerExceptHostHeader"
+# }
 
 resource "aws_cloudfront_origin_request_policy" "origin_request_policy" {
   count = var.origin_request_policy == null ? 0 : 1
@@ -240,7 +240,7 @@ resource "aws_cloudfront_distribution" "distribution" {
     response_headers_policy_id = aws_cloudfront_response_headers_policy.response_headers_policy.id
     cache_policy_id            = aws_cloudfront_cache_policy.cache_policy.id
     origin_request_policy_id = try(
-      data.aws_cloudfront_origin_request_policy.origin_request_policy[0].id,
+      var.custom_origin_request_policy,
       aws_cloudfront_origin_request_policy.origin_request_policy[0].id
     )
 
@@ -257,7 +257,7 @@ resource "aws_cloudfront_distribution" "distribution" {
     response_headers_policy_id = aws_cloudfront_response_headers_policy.response_headers_policy.id
     cache_policy_id            = aws_cloudfront_cache_policy.cache_policy.id
     origin_request_policy_id = try(
-      data.aws_cloudfront_origin_request_policy.origin_request_policy[0].id,
+      var.custom_origin_request_policy,
       aws_cloudfront_origin_request_policy.origin_request_policy[0].id
     )
 
@@ -274,7 +274,7 @@ resource "aws_cloudfront_distribution" "distribution" {
     response_headers_policy_id = aws_cloudfront_response_headers_policy.response_headers_policy.id
     cache_policy_id            = aws_cloudfront_cache_policy.cache_policy.id
     origin_request_policy_id = try(
-      data.aws_cloudfront_origin_request_policy.origin_request_policy[0].id,
+      var.custom_origin_request_policy,
       aws_cloudfront_origin_request_policy.origin_request_policy[0].id
     )
 
@@ -296,7 +296,7 @@ resource "aws_cloudfront_distribution" "distribution" {
     response_headers_policy_id = aws_cloudfront_response_headers_policy.response_headers_policy.id
     cache_policy_id            = aws_cloudfront_cache_policy.cache_policy.id
     origin_request_policy_id = try(
-      data.aws_cloudfront_origin_request_policy.origin_request_policy[0].id,
+      var.custom_origin_request_policy,
       aws_cloudfront_origin_request_policy.origin_request_policy[0].id
     )
 
@@ -318,7 +318,7 @@ resource "aws_cloudfront_distribution" "distribution" {
     response_headers_policy_id = aws_cloudfront_response_headers_policy.response_headers_policy.id
     cache_policy_id            = aws_cloudfront_cache_policy.cache_policy.id
     origin_request_policy_id = try(
-      data.aws_cloudfront_origin_request_policy.origin_request_policy[0].id,
+      var.custom_origin_request_policy,
       aws_cloudfront_origin_request_policy.origin_request_policy[0].id
     )
 
@@ -338,7 +338,7 @@ resource "aws_cloudfront_distribution" "distribution" {
       response_headers_policy_id = aws_cloudfront_response_headers_policy.response_headers_policy.id
       cache_policy_id            = aws_cloudfront_cache_policy.cache_policy.id
       origin_request_policy_id = try(
-        data.aws_cloudfront_origin_request_policy.origin_request_policy[0].id,
+        var.custom_origin_request_policy,
         aws_cloudfront_origin_request_policy.origin_request_policy[0].id
       )
 
@@ -355,7 +355,7 @@ resource "aws_cloudfront_distribution" "distribution" {
     response_headers_policy_id = aws_cloudfront_response_headers_policy.response_headers_policy.id
     cache_policy_id            = aws_cloudfront_cache_policy.cache_policy.id
     origin_request_policy_id = try(
-      data.aws_cloudfront_origin_request_policy.origin_request_policy[0].id,
+      var.custom_origin_request_policy,
       aws_cloudfront_origin_request_policy.origin_request_policy[0].id
     )
 
