@@ -4,6 +4,10 @@ variable "default_tags" {
   default     = {}
 }
 
+variable "aws_account_id" {
+  type        = string
+  description = "The account ID of the current AWS account"
+}
 
 variable "log_group_name" {
   type = string

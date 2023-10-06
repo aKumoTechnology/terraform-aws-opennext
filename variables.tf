@@ -8,6 +8,11 @@ variable "prefix" {
   default     = "opennext"
 }
 
+variable "aws_account_id" {
+  type        = string
+  description = "The account ID of the current AWS account"
+}
+
 variable "default_tags" {
   type        = map(string)
   description = "Default tags to apply to all created resources"
@@ -326,6 +331,9 @@ variable "cloudfront" {
       allow_methods     = list(string)
       allow_origins     = list(string)
       origin_override   = bool
+    }))
+    remove_headers_config = optional(object({
+      items = list(string)
     }))
     hsts = optional(object({
       access_control_max_age_sec = number
