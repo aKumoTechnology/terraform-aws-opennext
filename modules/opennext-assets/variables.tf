@@ -9,8 +9,6 @@ variable "default_tags" {
   default     = {}
 }
 
-
-
 variable "assets_path" {
   type        = string
   description = "The path of the open-next static assets"
