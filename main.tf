@@ -138,7 +138,7 @@ module "revalidation_queue" {
   prefix       = "${var.prefix}-revalidation-queue"
   default_tags = var.default_tags
 
-  aws_account_id            = try(var.aws_account_id, data.aws_caller_identity.current.account_id)
+  aws_account_id            = var.aws_account_id
   revalidation_function_arn = module.revalidation_function.lambda_function.arn
 }
 

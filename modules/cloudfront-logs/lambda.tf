@@ -87,7 +87,7 @@ data "aws_iam_policy_document" "cloudfront_logs_policy" {
 
   statement {
     actions   = ["logs:DescribeLogStreams"]
-    resources = ["arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"]
+    resources = ["arn:aws:logs:${data.aws_region.current.name}:${aws_caller_identity}:*"]
   }
 
   statement {
