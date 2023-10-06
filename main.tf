@@ -138,7 +138,7 @@ module "revalidation_queue" {
   prefix       = "${var.prefix}-revalidation-queue"
   default_tags = var.default_tags
 
-  aws_account_id            = data.aws_caller_identity.current.account_id
+  aws_account_id            = try(var.aws_account_id, data.aws_caller_identity.current.account_id)
   revalidation_function_arn = module.revalidation_function.lambda_function.arn
 }
 
@@ -183,8 +183,9 @@ module "warmer_function" {
  * CloudFront -> CloudWatch Logs
  **/
 module "cloudfront_logs" {
-  source       = "./modules/cloudfront-logs"
-  default_tags = var.default_tags
+  source         = "./modules/cloudfront-logs"
+  default_tags   = var.default_tags
+  aws_account_id = try(var.aws_account_id, data.aws_caller_identity.current.account_id)
 
   log_group_name  = "${var.prefix}-cloudfront-logs"
   log_bucket_name = "${var.prefix}-cloudfront-logs"
